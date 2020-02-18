@@ -96,10 +96,6 @@ export default class PostInfo extends Component {
       this.setState({ authenticated: false });
     };
 
-    getProductInfo = (id) => {
-      console.log(id)
-      return this.state.post.find(i => i.id === id);
-    }
 
 
   render() {
