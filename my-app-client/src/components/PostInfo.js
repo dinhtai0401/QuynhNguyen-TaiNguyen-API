@@ -46,7 +46,7 @@ export default class PostInfo extends Component {
 
 
 
-    handleOnDelete = (id) =>{
+    handleOnDelete = (id, e) =>{
       console.log(id);
       if(this.props.authenticated || this.props.isAuthenticated){
         if(this.props.user !== ''){
@@ -163,6 +163,7 @@ export default class PostInfo extends Component {
                <div>{i.dataOfPosting}</div>
                <div>{i.delivery}</div>
                <div>{i.SellerOfName}</div>
+               <button><Link to={`/postdetail/${i.id}`}>Change</Link></button>
             </div>
         )}
         </div>

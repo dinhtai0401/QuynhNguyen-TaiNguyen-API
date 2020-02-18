@@ -8,6 +8,7 @@ import PostInfo from './components/PostInfo';
 import PostView from './components/PostView';
 import PostChange from './components/PostChange';
 import PostUser from './components/PostUser';
+import PostDetail from './components/PostDetail';
 
 export default class App extends Component {
   constructor(props)
@@ -24,6 +25,11 @@ export default class App extends Component {
       post: [],
     };
   } 
+
+  getProductInfo = (id) => {
+    console.log(id)
+    return this.state.post.find(i => i.id === id);
+  }
 
   onLogin = (result) => {
     if(this.state.authenticated){
@@ -55,6 +61,7 @@ export default class App extends Component {
       this.setState({ post: res.data });
     })
     .catch(error => console.log(error));
+
     // Fetch does not send cookies. So you should add credentials: 'include'
     fetch("http://localhost:4000/auth/login/success", {
       method: "GET",
@@ -84,10 +91,7 @@ export default class App extends Component {
       });
   }
 
-    getProductInfo = (id) => {
-      console.log(id)
-      return this.state.post.find(i => i.id === id);
-    }
+   
 
   render() {
     console.log(this.state.post);
@@ -106,16 +110,19 @@ export default class App extends Component {
             />
         } />
         <Route path="/" exact render={
-          (routeProps) => <PostInfo isAuthenticated={this.state.isAuthenticated} authenticated={this.state.authenticated} onLogOut={this.onLogOut} userInfo={this.state.userInfo} user={this.state.user} post={this.state.post} {...routeProps} />
+          (routeProps) => <PostInfo isAuthenticated={this.state.isAuthenticated} authenticated={this.state.authenticated} onLogOut={this.onLogOut} userInfo={this.state.userInfo} user={this.state.user} getProductInfo={ this.getProductInfo } {...routeProps} />
         }/>
         <Route path="/postview" exact render={
-          (routeProps) => <PostView user={this.state.user} userInfo={this.state.userInfo}  {...routeProps} />
+          (routeProps) => <PostView user={this.state.user} userInfo={this.state.userInfo} getProductInfo={ this.getProductInfo } {...routeProps} />
         }/>
         <Route path="/product/:id" exact render={
           (routeProps) => <PostChange user={this.state.user} userInfo={this.state.userInfo} getProductInfo={ this.getProductInfo } {...routeProps} />
         }/>
         <Route path="/postuser" exact render={
           (routeProps) => <PostUser user={this.state.user} userInfo={this.state.userInfo} {...routeProps} />
+        }/>
+        <Route path="/postdetail/:id" exact render={
+          (routeProps) => <PostDetail getProductInfo={ this.getProductInfo } {...routeProps}/>
         }/>
       </Router>
       </div>
