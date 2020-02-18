@@ -41,7 +41,7 @@ export default class PostView extends Component {
     };
 
     onSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         if (this.props.userInfo !== '') {
             var formData = new FormData();
             for (const key of Object.keys(this.state.imgCollection)) {

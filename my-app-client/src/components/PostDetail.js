@@ -1,29 +1,55 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import constants from '../constants.json';
 
 export default class PostDetail extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          post:[],
+        };
+      }
+      
+
+      componentDidMount() {
+        if(this.props.user !== ''){
+            axios.get(constants.baseAddress + "/view/" + parseInt(this.props.match.params.id))
+            .then(res => {
+            console.log(res.data);
+            this.setState({ post: res.data});
+        })
+        }
+      };
 
     render(){
-        const productData = this.props.getProductInfo(parseInt(this.props.match.params.id));
-        return(
+        console.log(parseInt(this.props.match.params.id));
+        if(this.state.post){
+          return (
             <div>
-            <div>
-                <button><Link to="/">Home</Link></button>
-            </div>
-                <div style={{paddingTop: 20}}>
-                   <div>{productData.image.map(url => <img src={url} style={{width: "8%"}}></img>)}</div>
-                   <div>{productData.title}</div>
-                   <div>{productData.description}</div>
-                   <div>{productData.category}</div>
-                   <div>{productData.location}</div>
-                   <div>{productData.price}</div>
-                   <div>{productData.dataOfPosting}</div>
-                   <div>{productData.delivery}</div>
-                   <div>{productData.SellerOfName}</div>
+            {this.state.post.map(i => 
+                <div key={i.id}>
+                   <div>{i.image.map(url => <img src={url} style={{width: "8%"}}></img>)}</div>
+                   <div>{i.title}</div>
+                   <div>{i.description}</div>
+                   <div>{i.category}</div>
+                   <div>{i.location}</div>
+                   <div>{i.price}</div>
+                   <div>{i.dataOfPosting}</div>
+                   <div>{i.delivery}</div>
+                   <div>{i.SellerOfName}</div>
+                   <div>
+                     <button><Link to={'/'}>Home</Link></button>
+                   </div>
                 </div>
+            )}
             </div>
-        )
-    }
+            
+        );
+        }
+          
+        
+       }
+      
 }

@@ -46,7 +46,7 @@ export default class PostInfo extends Component {
 
 
 
-    handleOnDelete = (id, e) =>{
+    handleOnDelete = (id) =>{
       console.log(id);
       if(this.props.authenticated || this.props.isAuthenticated){
         if(this.props.user !== ''){
@@ -96,10 +96,16 @@ export default class PostInfo extends Component {
       this.setState({ authenticated: false });
     };
 
+    getProductInfo = (id) => {
+      console.log(id)
+      return this.state.post.find(i => i.id === id);
+    }
+
 
   render() {
     var { authenticated } = this.props;
     var { isAuthenticated } = this.props;
+    console.log(this.state.post)
     console.log(this.props.authenticated);
         let FilterPost;
         if(this.state.selectedValue === 'category'){
@@ -163,7 +169,7 @@ export default class PostInfo extends Component {
                <div>{i.dataOfPosting}</div>
                <div>{i.delivery}</div>
                <div>{i.SellerOfName}</div>
-               <button><Link to={`/postdetail/${i.id}`}>Change</Link></button>
+               <button><Link to={`/postdetail/${i.id}`}>Detail</Link></button>
             </div>
         )}
         </div>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import constants from '../constants.json';
 export default class PostChange extends Component {
     
     constructor(props) {
         super(props);
-
+        
         this.onFileChange = this.onFileChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -41,9 +41,9 @@ export default class PostChange extends Component {
       this.setState(state);
     };
 
+    
+
     onSubmit = (e) => {
-        const productData = this.props.getProductInfo(parseInt(this.props.match.params.id));
-        console.log(typeof(productData.id));
         e.preventDefault();
         if(this.props.userInfo !== ''){
             var formData = new FormData();
@@ -58,7 +58,7 @@ export default class PostChange extends Component {
             formData.append('price', e.target['price'].value);
             formData.append('delivery', this.state.selectedValue);
             formData.append('SellerOfName', e.target['SellerOfName'].value);
-            axios.put("http://localhost:4000/post/" + productData.id , formData, {
+            axios.put("http://localhost:4000/post/" + parseInt(this.props.match.params.id) , formData, {
           
             }).then(res => {
                 console.log(res.data)
@@ -76,7 +76,7 @@ export default class PostChange extends Component {
             formData.append('price', e.target['price'].value);
             formData.append('delivery', this.state.selectedValue);
             formData.append('SellerOfName', e.target['SellerOfName'].value);
-            axios.put("http://localhost:4000/post/" + productData.id , formData, {
+            axios.put("http://localhost:4000/post/" + parseInt(this.props.match.params.id), formData, {
           
             }).then(res => {
                 console.log(res.data)

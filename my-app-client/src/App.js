@@ -22,14 +22,9 @@ export default class App extends Component {
       message: "",
       userInfo: '',
       user: '',
-      post: [],
     };
   } 
 
-  getProductInfo = (id) => {
-    console.log(id)
-    return this.state.post.find(i => i.id === id);
-  }
 
   onLogin = (result) => {
     if(this.state.authenticated){
@@ -55,13 +50,6 @@ export default class App extends Component {
   /* This function illustrates how some protected API could be accessed */
 
   componentDidMount() {
-    axios.get(constants.baseAddress + "/post")
-    .then(res => {
-      console.log(res.data);
-      this.setState({ post: res.data });
-    })
-    .catch(error => console.log(error));
-
     // Fetch does not send cookies. So you should add credentials: 'include'
     fetch("http://localhost:4000/auth/login/success", {
       method: "GET",
@@ -122,7 +110,7 @@ export default class App extends Component {
           (routeProps) => <PostUser user={this.state.user} userInfo={this.state.userInfo} {...routeProps} />
         }/>
         <Route path="/postdetail/:id" exact render={
-          (routeProps) => <PostDetail getProductInfo={ this.getProductInfo } {...routeProps}/>
+          (routeProps) => <PostDetail {...routeProps}/>
         }/>
       </Router>
       </div>

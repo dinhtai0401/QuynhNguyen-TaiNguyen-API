@@ -267,6 +267,26 @@ app.get('/post/:id', (req, res) => {
 })
 
 
+app.get('/view/:id', (req, res) => {
+    const resultPost = post.posts.filter(i => {
+        if (i.id == req.params.id) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    });
+    if(resultPost === undefined)
+    {
+        res.sendStatus(404)
+    }
+    else
+    {
+        res.json(resultPost);
+    }
+})
+
+
 
 
 
@@ -311,19 +331,21 @@ app.post('/post', upload.array('imgCollection', 4), (req, res, next) => {
     var yyyy = today.getFullYear();
 
     today = mm + '/' + dd + '/' + yyyy;
-    const newPost = {
-        id: post.posts.length + 1,
-        idUser: req.body.idUser,
-        title: req.body.title,
-        description: req.body.description,
-        category: req.body.category,
-        location: req.body.location,
-        image: reqFiles,
-        price: req.body.price,
-        dataOfPosting: today,
-        delivery: req.body.delivery,
-        SellerOfName: req.body.SellerOfName,
-    };
+        var newPost = {
+            id: post.posts.length + 2,
+            idUser: req.body.idUser,
+            title: req.body.title,
+            description: req.body.description,
+            category: req.body.category,
+            location: req.body.location,
+            image: reqFiles,
+            price: req.body.price,
+            dataOfPosting: today,
+            delivery: req.body.delivery,
+            SellerOfName: req.body.SellerOfName,
+        };
+   
+
     post.posts.push(newPost);
     res.status(201);
     res.json(newPost)
@@ -349,6 +371,12 @@ app.put('/post/:id', upload.array('imgCollection', 4), (req, res) => {
     for (var i = 0; i < req.files.length; i++) {
         reqFiles.push(url + '/uploads/' + req.files[i].filename)
     }
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
     post.posts = post.posts.filter(post => post.id != req.params.id);
     const newPost = {
         id: req.params.id,
@@ -359,7 +387,7 @@ app.put('/post/:id', upload.array('imgCollection', 4), (req, res) => {
         location: req.body.location,
         image: reqFiles,
         price: req.body.price,
-        dataOfPosting: req.body.dataOfPosting,
+        dataOfPosting: today,
         delivery: req.body.delivery,
         SellerOfName: req.body.SellerOfName,
     }

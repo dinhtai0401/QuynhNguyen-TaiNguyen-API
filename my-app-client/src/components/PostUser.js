@@ -46,7 +46,7 @@ export default class PostView extends Component {
   
 
     render() {
-     
+        console.log(this.state.post)
         return (
             <div>
             {this.state.post.map(i => 
