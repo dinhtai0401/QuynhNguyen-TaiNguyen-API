@@ -61,10 +61,7 @@ export default class PostView extends Component {
             }).then(res => {
                 console.log(res.data)
             })
-        }else{
-            console.log("must login")
-        }
-        if (this.props.user !== '') {
+        }else if (this.props.user !== '') {
             var formData = new FormData();
             for (const key of Object.keys(this.state.imgCollection)) {
                 formData.append('imgCollection', this.state.imgCollection[key])
@@ -84,7 +81,7 @@ export default class PostView extends Component {
                 console.log(res.data)
             })
         }else{
-            console.log("must login")
+            alert("must login")
         }
       
     }
