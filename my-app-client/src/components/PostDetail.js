@@ -15,7 +15,7 @@ export default class PostDetail extends Component {
 
       componentDidMount() {
         if(this.props.user !== ''){
-            axios.get(constants.baseAddress + "/view/" + parseInt(this.props.match.params.id))
+            axios.get(constants.baseAddress + "/post/" + parseInt(this.props.match.params.id))
             .then(res => {
             console.log(res.data);
             this.setState({ post: res.data});

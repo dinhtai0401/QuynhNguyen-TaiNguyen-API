@@ -9,9 +9,6 @@ const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy,
       ExtractJwt = require('passport-jwt').ExtractJwt;
 const jwtSecretKey = require('./jwt-key.json');
-const multer  = require('multer');
-const has = require('has-value');
-const uuidv4 = require('uuid/v4');
 const users = require('./services/users');
 const GoogleStrategy = require('passport-google-oauth20');
 const User = require('./services/user-services');
@@ -19,7 +16,8 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const keys = require('./key');
 const cookieParser = require("cookie-parser");
-const Post = require('./services/post-services')
+const postComponent = require('./components/post');
+
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
 app.use(express.json());
@@ -29,8 +27,7 @@ app.use(
       name: "session",
       keys: [keys.session.cookieKey ],
       maxAge: 24 * 60 * 60 * 100
-    })
-  );
+}));
 
 mongoose.connect(keys.mongodb.dbURL,{ useNewUrlParser: true, useUnifiedTopology: true }, () => {
     console.log('connected to mongodb')
@@ -41,14 +38,16 @@ app.use(
       origin: "http://localhost:3000", // allow to server to accept request from different origin
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       credentials: true // allow session cookie from browser to pass through
-    })
-  );
+}));
   
 
 
 //initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/post', postComponent);
+//app.use('/auth', passportComponent);
 
 // authenticate with BasicStrategy and Token and Google
 // --------------------------------------------------------------------------------------
@@ -82,8 +81,7 @@ passport.use(new JwtStrategy(options, (jwt_payload, done) => {
     }else{
         done(null, false);
     }
-}
-));
+}));
 
 
 app.get('/users/signin', passport.authenticate('jwt', { session: false }), (req,res) =>{
@@ -158,247 +156,29 @@ app.get("/auth/login/success",  (req, res) => {
         user: req.user,
       });
     }
-  });
+});
   
-  app.get("/auth/login/failed", (req, res) => {
+app.get("/auth/login/failed", (req, res) => {
     res.status(401).json({
       success: false,
       message: "user failed to authenticate."
     });
-  }); 
-
+}); 
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile'] 
 }));
 
 app.get('/auth/google/redirect', passport.authenticate('google') ,(req,res) =>{
-    res.redirect("http://localhost:3000");
-    console.log(req.user.username)
-});
-
-
-
-
-// Middleware 
-
-const authCheck = (req, res, next) => {
+    //res.redirect("http://localhost:3000");
     console.log(req.user)
-    if(!req.user){
-        console.log('Not user')
-    } 
-    next();
-}
-
-//----------------------------------------  
+    res.send(req.user)
+});
 
 app.get('/auth/logout', (req,res) => {
     req.logout();
     res.redirect("http://localhost:3000");
 }); 
-
-//------------------------------------------------------------------------------------------------
-
-//  Infortion of customers and some function (post/get/put/delete)
-
-var post = {
-    posts: [{
-        "id" : 1,
-        "idUser": "admin",
-        "title" : "Car for new",
-        "description": "Still new",
-        "category": "Car",
-        "location": "Oulu",
-        "image": [
-            "http://localhost:4000/uploads/1d15d8ee-89be-45ad-b946-4cd26c06ce61-download-(1).jpeg",
-            "http://localhost:4000/uploads/41c72e7e-0743-425b-ac69-03802c7f3f43-download-(2).jpeg",
-            "http://localhost:4000/uploads/0544fb27-4979-430c-8bd0-af1da840ff07-download.jpeg"
-        ],
-        "price": "400",
-        "dataOfPosting": "01/02/2020",
-        "delivery" : "Shipping",
-        "SellerOfName": "Anna - 01241325"
-    },
-    {
-        "id" : 2,
-        "idUser": "admin",
-        "title" : "Clothing for new",
-        "description": "6 months",
-        "category": "Clothing",
-        "location": "Helsinki",
-        "image": [
-            "http://localhost:4000/uploads/1d15d8ee-89be-45ad-b946-4cd26c06ce61-download-(1).jpeg",
-            "http://localhost:4000/uploads/41c72e7e-0743-425b-ac69-03802c7f3f43-download-(2).jpeg",
-            "http://localhost:4000/uploads/0544fb27-4979-430c-8bd0-af1da840ff07-download.jpeg"
-        ],
-        "price": "200",
-        "dataOfPosting": "02/02/2020",
-        "delivery" : "Pickup",
-        "SellerOfName": "Henkoi - 012413251"
-    }]
-}
-
-// Get all data
-
-app.get('/post', (req, res) => { 
-        res.json(post.posts)
-});
-
-
-// Get id of single data
-
-app.get('/post/:id', (req, res) => {
-    const resultPost = post.posts.filter(d => {
-        if (d.idUser == req.params.id) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    });
-    if(resultPost === undefined)
-    {
-        res.sendStatus(404)
-    }
-    else
-    {
-        res.json(resultPost);
-    }
-})
-
-
-app.get('/view/:id', (req, res) => {
-    const resultPost = post.posts.filter(i => {
-        if (i.id == req.params.id) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    });
-    if(resultPost === undefined)
-    {
-        res.sendStatus(404)
-    }
-    else
-    {
-        res.json(resultPost);
-    }
-})
-
-
-
-
-
-
-
-// Post the single data
-
-const DIR = './uploads/';
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, DIR);
-    },
-    filename: (req, file, cb) => {
-        const fileName = file.originalname.toLowerCase().split(' ').join('-');
-        cb(null, uuidv4() + '-' + fileName)
-    }
-});
-
-var upload = multer({
-    storage: storage,
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
-            cb(null, true);
-        } else {
-            cb(null, false);
-            return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
-        }
-    }
-});
-
-
-app.post('/post', upload.array('imgCollection', 4), (req, res, next) => {
-    const reqFiles = [];
-    const url = req.protocol + '://' + req.get('host')
-    for (var i = 0; i < req.files.length; i++) {
-        reqFiles.push(url + '/uploads/' + req.files[i].filename)
-    }
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-
-    today = mm + '/' + dd + '/' + yyyy;
-        var newPost = {
-            id: post.posts.length + 2,
-            idUser: req.body.idUser,
-            title: req.body.title,
-            description: req.body.description,
-            category: req.body.category,
-            location: req.body.location,
-            image: reqFiles,
-            price: req.body.price,
-            dataOfPosting: today,
-            delivery: req.body.delivery,
-            SellerOfName: req.body.SellerOfName,
-        };
-   
-
-    post.posts.push(newPost);
-    res.status(201);
-    res.json(newPost)
-
-})
-
-// Delete the single data
-
-
-app.delete('/post/:id', (req, res) => {
-    post.posts = post.posts.filter(post => post.id != req.params.id);
-    res.sendStatus(200);
-});
-
-
-
-// Change the info of the single data
-
-
-app.put('/post/:id', upload.array('imgCollection', 4), (req, res) => {
-    const reqFiles = [];
-    const url = req.protocol + '://' + req.get('host')
-    for (var i = 0; i < req.files.length; i++) {
-        reqFiles.push(url + '/uploads/' + req.files[i].filename)
-    }
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-
-    today = mm + '/' + dd + '/' + yyyy;
-    post.posts = post.posts.filter(post => post.id != req.params.id);
-    const newPost = {
-        id: req.params.id,
-        idUser: req.body.idUser,
-        title: req.body.title,
-        description: req.body.description,
-        category: req.body.category,
-        location: req.body.location,
-        image: reqFiles,
-        price: req.body.price,
-        dataOfPosting: today,
-        delivery: req.body.delivery,
-        SellerOfName: req.body.SellerOfName,
-    }
-    post.posts.push(newPost);
-
-    res.status(200);
-    res.json(newPost); 
-})
-
-//----------------------------------------------------------------------------------------------------------
-
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

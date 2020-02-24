@@ -6,7 +6,7 @@ import constants from '../constants.json';
 let myAuth = {
     authenticate: (username, password, token) => {      
       return new Promise((resolve, reject) => {
-        axios.get(constants.baseAddress + '/users/:id', 
+        axios.get(constants.baseAddress + '/auth/:id', 
             {
               auth: {
               username: username,
@@ -17,7 +17,7 @@ let myAuth = {
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
             };
-            axios.get(constants.baseAddress + '/users/signin',
+            axios.get(constants.baseAddress + '/auth/signin',
                 config
             ).then(res => {
                 resolve(res.data);
