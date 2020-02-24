@@ -170,6 +170,12 @@ router.put('/:id', upload.array('imgCollection', 4), (req, res) => {
 
     res.status(200);
     res.json(newPost); 
-})
+});
+
+
+
+
+
+
 
 module.exports = router;
