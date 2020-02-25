@@ -1,0 +1,238 @@
+openapi: 3.0.1
+info:
+  title: Simple Inventory API
+  description: This is a simple API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/t8ngph00/WebSelling/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /post:
+    get:
+      summary: Get current post in all posts
+      operationId: getPostInAllPosts
+      responses:
+        "200":
+          description: List of all posts and their information
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductInfo'
+                x-content-type: application/json
+      x-swagger-router-controller: Default
+    post:
+      summary: Post a new post
+      description: Lets a user post a new post
+      operationId: postPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductInfo'
+        required: true
+      responses:
+        "200":
+          description: Successfully
+        "400":
+          description: Invaid values
+      x-swagger-router-controller: Default
+  /post/{category}:
+    get:
+      summary: Get post in a single post
+      operationId: postCategoryGET
+      parameters:
+      - name: category
+        in: path
+        description: Unique id for a post
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Post of the requested posts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductInfo'
+      x-swagger-router-controller: Default
+  /post/{location}:
+    get:
+      summary: Get post in a single post
+      operationId: postLocationGET
+      parameters:
+      - name: location
+        in: path
+        description: Unique id for a post
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Post of the requested posts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductInfo'
+      x-swagger-router-controller: Default
+  /post/{dateOfPosting}:
+    get:
+      summary: Get post in a single post
+      operationId: postDateOfPostingGET
+      parameters:
+      - name: dateOfPosting
+        in: path
+        description: Unique id for a post
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Post of the requested posts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductInfo'
+      x-swagger-router-controller: Default
+  /post/{id}:
+    get:
+      summary: Get post in a single post
+      operationId: postIdGET
+      parameters:
+      - name: id
+        in: path
+        description: Unique id for a post
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Post of the requested posts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductInfo'
+      x-swagger-router-controller: Default
+    put:
+      summary: Change current weather in a single city
+      operationId: postIdPUT
+      parameters:
+      - name: id
+        in: path
+        description: Unique id for a post
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductInfo'
+        required: true
+      responses:
+        "200":
+          description: successfully
+        "400":
+          description: Unsuccessfully
+      x-swagger-router-controller: Default
+    delete:
+      summary: Delete a single post
+      operationId: postIdDELETE
+      parameters:
+      - name: id
+        in: path
+        description: Unique id for a post
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductInfo'
+      responses:
+        "200":
+          description: successfully
+        "400":
+          description: Unsuccessfully
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    ProductInfo:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unique id to identify a post
+          example: 1
+        title:
+          type: string
+          description: The title of the post
+          example: lamborghini aventador for selling
+        catergory:
+          type: string
+          description: Kind of the product belongs to
+          example: car
+        location:
+          type: string
+          description: The location where the post is
+          example: Oulu
+        images:
+          type: array
+          description: Pictures of the product
+          example:
+          - image1
+          - image2
+          - image3
+          items:
+            type: string
+        price:
+          type: integer
+          description: The price of the product
+          format: int32
+          example: 200
+        dateOfPosting:
+          type: string
+          description: current date
+          format: date
+          example: 0025-08-12
+        deliveryType:
+          type: string
+          description: transportation
+          example: shipping
+        nameAndNumber:
+          type: string
+          description: information for the customers
+          example: Anna - 0417155512
+      example:
+        nameAndNumber: Anna - 0417155512
+        images:
+        - image1
+        - image2
+        - image3
+        price: 200
+        deliveryType: shipping
+        location: Oulu
+        id: 1
+        dateOfPosting: 0025-08-12T00:00:00.000+0000
+        title: lamborghini aventador for selling
+        catergory: car
