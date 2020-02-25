@@ -58,7 +58,17 @@ router.get('/:id', (req, res) => {
         }
         else if (d.idUser == req.params.id)  {
             return true;
-        }else {
+        }
+        else if (d.category == req.params.id){
+            return true;
+        }
+        else if (d.location == req.params.id){
+            return true;
+        }
+        else if (d.dataOfPosting == req.params.id){
+            return true;
+        }
+        else {
             return false;
         }
         
