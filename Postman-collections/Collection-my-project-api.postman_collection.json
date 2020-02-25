@@ -245,10 +245,7 @@
 							"    pm.response.to.have.status(200);",
 							"})",
 							"",
-							"pm.test(\"Status code is 200\", function(){",
-							"    var jsonData = pm.response.json()",
-							"    pm.expect(jsonData[0].category).to.eql(\"Car\");",
-							"})"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -297,15 +294,15 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:4000/post/Car",
+					"raw": "http://localhost:4000/auth/google",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
-						"post",
-						"Car"
+						"auth",
+						"google"
 					]
 				}
 			},
@@ -455,6 +452,81 @@
 					"path": [
 						"post",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/auth/google",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e371e14-a226-4b99-95b0-252abc423cb1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "queryParams",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "sdasa",
+							"type": "text"
+						},
+						{
+							"key": "imgCollection",
+							"type": "file",
+							"src": [
+								"/Users/tainguyen/Documents/image/download (1).jpeg",
+								"/Users/tainguyen/Documents/image/download (2).jpeg",
+								"/Users/tainguyen/Documents/image/download.jpeg"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/auth/google",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"google"
 					]
 				}
 			},
