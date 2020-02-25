@@ -48,7 +48,6 @@ router.get('/', (req, res) => {
         res.json(post.posts)
 });
 
-
 // Get id of single data
 
 router.get('/:id', (req, res) => {
@@ -109,7 +108,6 @@ var upload = multer({
     }
 });
 
-
 router.post('/', upload.array('imgCollection', 4), (req, res, next) => {
     const reqFiles = [];
     const url = req.protocol + '://' + req.get('host')
@@ -145,16 +143,12 @@ router.post('/', upload.array('imgCollection', 4), (req, res, next) => {
 
 // Delete the single data
 
-
 router.delete('/:id', (req, res) => {
     post.posts = post.posts.filter(post => post.id != req.params.id);
     res.sendStatus(200);
 });
 
-
-
 // Change the info of the single data
-
 
 router.put('/:id', upload.array('imgCollection', 4), (req, res) => {
     const reqFiles = [];
@@ -186,7 +180,12 @@ router.put('/:id', upload.array('imgCollection', 4), (req, res) => {
 
     res.status(200);
     res.json(newPost); 
-})
+});
+
+
+
+
+
 
 
 module.exports = router;
