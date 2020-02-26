@@ -294,15 +294,15 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:4000/auth/google",
+					"raw": "http://localhost:4000/post/Clothing",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
-						"auth",
-						"google"
+						"post",
+						"Clothing"
 					]
 				}
 			},
