@@ -64,10 +64,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post",
+					"raw": "http://ec2-18-212-181-204.compute-1.amazonaws.com/post",
 					"protocol": "http",
 					"host": [
-						"ec2-100-26-195-24",
+						"ec2-18-212-181-204",
 						"compute-1",
 						"amazonaws",
 						"com"
@@ -90,11 +90,7 @@
 							"pm.test(\"Status code is 200\", function(){",
 							"    pm.response.to.have.status(200);",
 							"})",
-							"",
-							"pm.test(\"Status code is 200\", function(){",
-							"    var jsonData = pm.response.json()",
-							"    pm.expect(jsonData[0].location).to.eql(\"Oulu\");",
-							"})"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -143,10 +139,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/Oulu",
+					"raw": "http://ec2-18-212-181-204.compute-1.amazonaws.com/post/Oulu",
 					"protocol": "http",
 					"host": [
-						"ec2-100-26-195-24",
+						"ec2-18-212-181-204",
 						"compute-1",
 						"amazonaws",
 						"com"
@@ -223,10 +219,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/02",
+					"raw": "http://ec2-18-212-181-204.compute-1.amazonaws.com/post/02",
 					"protocol": "http",
 					"host": [
-						"ec2-100-26-195-24",
+						"ec2-18-212-181-204",
 						"compute-1",
 						"amazonaws",
 						"com"
@@ -300,10 +296,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/Clothing",
+					"raw": "http://ec2-18-212-181-204.compute-1.amazonaws.com/post/Clothing",
 					"protocol": "http",
 					"host": [
-						"ec2-100-26-195-24",
+						"ec2-18-212-181-204",
 						"compute-1",
 						"amazonaws",
 						"com"
@@ -365,10 +361,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post",
+					"raw": "http://ec2-18-212-181-204.compute-1.amazonaws.com/post",
 					"protocol": "http",
 					"host": [
-						"ec2-100-26-195-24",
+						"ec2-18-212-181-204",
 						"compute-1",
 						"amazonaws",
 						"com"
@@ -419,10 +415,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/1",
+					"raw": "http://ec2-18-212-181-204.compute-1.amazonaws.com/post/1",
 					"protocol": "http",
 					"host": [
-						"ec2-100-26-195-24",
+						"ec2-18-212-181-204",
 						"compute-1",
 						"amazonaws",
 						"com"
@@ -455,10 +451,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/1",
+					"raw": "http://ec2-18-212-181-204.compute-1.amazonaws.com/post/1",
 					"protocol": "http",
 					"host": [
-						"ec2-100-26-195-24",
+						"ec2-18-212-181-204",
 						"compute-1",
 						"amazonaws",
 						"com"
@@ -506,10 +502,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/users/1",
+					"raw": "http://ec2-18-212-181-204.compute-1.amazonaws.com/users/1",
 					"protocol": "http",
 					"host": [
-						"ec2-100-26-195-24",
+						"ec2-18-212-181-204",
 						"compute-1",
 						"amazonaws",
 						"com"
@@ -517,52 +513,6 @@
 					"path": [
 						"users",
 						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://ec2-100-26-195-24.compute-1.amazonaws.com/users/signin",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "b529cce3-9292-47e8-9e4f-a6383ae28cb8",
-						"exec": [
-							"pm.test(\"Status code is 200\", function(){",
-							"    pm.response.to.have.status(200);",
-							"})"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6InRlc3RlckBtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3NjE2MzAsImV4cCI6MTU4Mjc2MTY0MH0.8kaNinJmel56jTvFbPICQLFpST_zp0EaBCAhU_8n2EU",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/users/signin",
-					"protocol": "http",
-					"host": [
-						"ec2-100-26-195-24",
-						"compute-1",
-						"amazonaws",
-						"com"
-					],
-					"path": [
-						"users",
-						"signin"
 					]
 				}
 			},
