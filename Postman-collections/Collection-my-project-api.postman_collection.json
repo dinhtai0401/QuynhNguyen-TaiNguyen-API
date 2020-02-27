@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:4000/post",
+			"name": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post",
 			"event": [
 				{
 					"listen": "test",
@@ -64,12 +64,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:4000/post",
+					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"ec2-100-26-195-24",
+						"compute-1",
+						"amazonaws",
+						"com"
 					],
-					"port": "4000",
 					"path": [
 						"post"
 					]
@@ -78,7 +80,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4000/post",
+			"name": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/Oulu",
 			"event": [
 				{
 					"listen": "test",
@@ -141,12 +143,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:4000/post/Oulu",
+					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/Oulu",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"ec2-100-26-195-24",
+						"compute-1",
+						"amazonaws",
+						"com"
 					],
-					"port": "4000",
 					"path": [
 						"post",
 						"Oulu"
@@ -156,7 +160,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4000/post",
+			"name": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/02",
 			"event": [
 				{
 					"listen": "test",
@@ -219,12 +223,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:4000/post/02",
+					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/02",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"ec2-100-26-195-24",
+						"compute-1",
+						"amazonaws",
+						"com"
 					],
-					"port": "4000",
 					"path": [
 						"post",
 						"02"
@@ -234,7 +240,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4000/post",
+			"name": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/Clothing",
 			"event": [
 				{
 					"listen": "test",
@@ -294,12 +300,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:4000/post/Clothing",
+					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/Clothing",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"ec2-100-26-195-24",
+						"compute-1",
+						"amazonaws",
+						"com"
 					],
-					"port": "4000",
 					"path": [
 						"post",
 						"Clothing"
@@ -309,7 +317,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4000/post",
+			"name": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post",
 			"event": [
 				{
 					"listen": "test",
@@ -357,12 +365,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:4000/post",
+					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"ec2-100-26-195-24",
+						"compute-1",
+						"amazonaws",
+						"com"
 					],
-					"port": "4000",
 					"path": [
 						"post"
 					]
@@ -371,7 +381,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4000/post/1",
+			"name": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/1",
 			"event": [
 				{
 					"listen": "test",
@@ -409,12 +419,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:4000/post/1",
+					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"ec2-100-26-195-24",
+						"compute-1",
+						"amazonaws",
+						"com"
 					],
-					"port": "4000",
 					"path": [
 						"post",
 						"1"
@@ -424,7 +436,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4000/post/1",
+			"name": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/1",
 			"event": [
 				{
 					"listen": "test",
@@ -443,12 +455,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/post/1",
+					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/post/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"ec2-100-26-195-24",
+						"compute-1",
+						"amazonaws",
+						"com"
 					],
-					"port": "4000",
 					"path": [
 						"post",
 						"1"
@@ -458,7 +472,21 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4000/users/1",
+			"name": "http://ec2-100-26-195-24.compute-1.amazonaws.com/users/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "04414a3e-281b-417e-9ff0-b179bf2297a4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -478,12 +506,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/users/1",
+					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/users/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"ec2-100-26-195-24",
+						"compute-1",
+						"amazonaws",
+						"com"
 					],
-					"port": "4000",
 					"path": [
 						"users",
 						"1"
@@ -493,12 +523,12 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4000/users/signin",
+			"name": "http://ec2-100-26-195-24.compute-1.amazonaws.com/users/signin",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "4288fa18-10e9-4670-af16-c44dabd5ca82",
+						"id": "b529cce3-9292-47e8-9e4f-a6383ae28cb8",
 						"exec": [
 							"pm.test(\"Status code is 200\", function(){",
 							"    pm.response.to.have.status(200);",
@@ -514,7 +544,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6InRlc3RlckBtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3MjQyODksImV4cCI6MTU4MjcyNDI5OX0.3hvA4ZROs4MXXY4kMqwK0cIeaW0XjxR4-o3cYt4tPts",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6InRlc3RlckBtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3NjE2MzAsImV4cCI6MTU4Mjc2MTY0MH0.8kaNinJmel56jTvFbPICQLFpST_zp0EaBCAhU_8n2EU",
 							"type": "string"
 						}
 					]
@@ -522,12 +552,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/users/signin",
+					"raw": "http://ec2-100-26-195-24.compute-1.amazonaws.com/users/signin",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"ec2-100-26-195-24",
+						"compute-1",
+						"amazonaws",
+						"com"
 					],
-					"port": "4000",
 					"path": [
 						"users",
 						"signin"
