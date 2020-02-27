@@ -183,7 +183,7 @@
     <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
     <div class="app-desc">Contact Info: <a href="you@your-company.com">you@your-company.com</a></div>
     <div class="app-desc">Version: 1.0.0</div>
-    <div class="app-desc">BasePath:/dinhtai0401/WebSelling/1.0.0</div>
+    <div class="app-desc">BasePath:/t8ngph00/WebSelling/1.0.0</div>
     <div class="license-info">Apache 2.0</div>
     <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
   <h2>Access</h2>
@@ -195,70 +195,17 @@
   <div class="method-summary"></div>
   <h4><a href="#Default">Default</a></h4>
   <ul>
-  <li><a href="#getDetailPost"><code><span class="http-method">get</span> /post/{id}</code></a></li>
   <li><a href="#getPostInAllPosts"><code><span class="http-method">get</span> /post</code></a></li>
   <li><a href="#postCategoryGet"><code><span class="http-method">get</span> /post/{category}</code></a></li>
   <li><a href="#postDateOfPostingGet"><code><span class="http-method">get</span> /post/{dateOfPosting}</code></a></li>
   <li><a href="#postIdDelete"><code><span class="http-method">delete</span> /post/{id}</code></a></li>
+  <li><a href="#postIdGet"><code><span class="http-method">get</span> /post/{id}</code></a></li>
+  <li><a href="#postIdPut"><code><span class="http-method">put</span> /post/{id}</code></a></li>
   <li><a href="#postLocationGet"><code><span class="http-method">get</span> /post/{location}</code></a></li>
-  <li><a href="#postNewPost"><code><span class="http-method">post</span> /post</code></a></li>
-  <li><a href="#putProducts"><code><span class="http-method">put</span> /post/{id}</code></a></li>
+  <li><a href="#postPost"><code><span class="http-method">post</span> /post</code></a></li>
   </ul>
 
   <h1><a name="Default">Default</a></h1>
-  <div class="method"><a name="getDetailPost"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /post/{id}</code></pre></div>
-    <div class="method-summary">Get post in a single post (<span class="nickname">getDetailPost</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#ProductInfo">ProductInfo</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "nameAndNumber" : "Anna - 0417155512",
-  "images" : [ "image1", "image2", "image3" ],
-  "price" : 200,
-  "deliveryType" : "shipping",
-  "location" : "Oulu",
-  "id" : 1,
-  "dateOfPosting" : "2000-01-23",
-  "title" : "lamborghini aventador for selling",
-  "catergory" : "car"
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Post of the requested posts
-        <a href="#ProductInfo">ProductInfo</a>
-  </div> <!-- method -->
-  <hr/>
   <div class="method"><a name="getPostInAllPosts"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -289,7 +236,7 @@
   "deliveryType" : "shipping",
   "location" : "Oulu",
   "id" : 1,
-  "dateOfPosting" : "2000-01-23",
+  "dateOfPosting" : "0025-08-12T00:00:00.000+0000",
   "title" : "lamborghini aventador for selling",
   "catergory" : "car"
 }, {
@@ -299,7 +246,7 @@
   "deliveryType" : "shipping",
   "location" : "Oulu",
   "id" : 1,
-  "dateOfPosting" : "2000-01-23",
+  "dateOfPosting" : "0025-08-12T00:00:00.000+0000",
   "title" : "lamborghini aventador for selling",
   "catergory" : "car"
 } ]</code></pre>
@@ -328,7 +275,7 @@
     <div class="field-items">
       <div class="param">category (required)</div>
       
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Unique id for a post </div>    </div>  <!-- field-items -->
 
 
 
@@ -352,7 +299,7 @@
   "deliveryType" : "shipping",
   "location" : "Oulu",
   "id" : 1,
-  "dateOfPosting" : "2000-01-23",
+  "dateOfPosting" : "0025-08-12T00:00:00.000+0000",
   "title" : "lamborghini aventador for selling",
   "catergory" : "car"
 }</code></pre>
@@ -381,7 +328,7 @@
     <div class="field-items">
       <div class="param">dateOfPosting (required)</div>
       
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Unique id for a post </div>    </div>  <!-- field-items -->
 
 
 
@@ -405,7 +352,7 @@
   "deliveryType" : "shipping",
   "location" : "Oulu",
   "id" : 1,
-  "dateOfPosting" : "2000-01-23",
+  "dateOfPosting" : "0025-08-12T00:00:00.000+0000",
   "title" : "lamborghini aventador for selling",
   "catergory" : "car"
 }</code></pre>
@@ -427,14 +374,14 @@
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="delete"><code class="huge"><span class="http-method">delete</span> /post/{id}</code></pre></div>
-    <div class="method-summary">Post a new weather (<span class="nickname">postIdDelete</span>)</div>
-    <div class="method-notes">Lets a user post a new post</div>
+    <div class="method-summary">Delete a single post (<span class="nickname">postIdDelete</span>)</div>
+    <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
     <div class="field-items">
       <div class="param">id (required)</div>
       
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Unique id for a post </div>    </div>  <!-- field-items -->
 
 
 
@@ -448,25 +395,25 @@
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    Successfully
+    successfully
         <a href="#"></a>
     <h4 class="field-label">400</h4>
-    Invaid values
+    Unsuccessfully
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="postLocationGet"></a>
+  <div class="method"><a name="postIdGet"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /post/{location}</code></pre></div>
-    <div class="method-summary">Get post in a single post (<span class="nickname">postLocationGet</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /post/{id}</code></pre></div>
+    <div class="method-summary">Get post in a single post (<span class="nickname">postIdGet</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
     <div class="field-items">
-      <div class="param">location (required)</div>
+      <div class="param">id (required)</div>
       
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Unique id for a post </div>    </div>  <!-- field-items -->
 
 
 
@@ -490,7 +437,7 @@
   "deliveryType" : "shipping",
   "location" : "Oulu",
   "id" : 1,
-  "dateOfPosting" : "2000-01-23",
+  "dateOfPosting" : "0025-08-12T00:00:00.000+0000",
   "title" : "lamborghini aventador for selling",
   "catergory" : "car"
 }</code></pre>
@@ -508,20 +455,31 @@
         <a href="#ProductInfo">ProductInfo</a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="postNewPost"></a>
+  <div class="method"><a name="postIdPut"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /post</code></pre></div>
-    <div class="method-summary">Post a new post (<span class="nickname">postNewPost</span>)</div>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /post/{id}</code></pre></div>
+    <div class="method-summary">Change current weather in a single city (<span class="nickname">postIdPut</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
     <div class="field-items">
       <div class="param">id (required)</div>
       
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The post. </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Unique id for a post </div>    </div>  <!-- field-items -->
 
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
 
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#ProductInfo">ProductInfo</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+                </div>  <!-- field-items -->
 
 
 
@@ -533,26 +491,86 @@
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    OK
+    successfully
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Unsuccessfully
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="putProducts"></a>
+  <div class="method"><a name="postLocationGet"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="put"><code class="huge"><span class="http-method">put</span> /post/{id}</code></pre></div>
-    <div class="method-summary">Your PUT endpoint (<span class="nickname">putProducts</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /post/{location}</code></pre></div>
+    <div class="method-summary">Get post in a single post (<span class="nickname">postLocationGet</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
     <div class="field-items">
-      <div class="param">id (required)</div>
+      <div class="param">location (required)</div>
       
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>      <div class="param">body (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; change the products infomation </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Unique id for a post </div>    </div>  <!-- field-items -->
 
 
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ProductInfo">ProductInfo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "nameAndNumber" : "Anna - 0417155512",
+  "images" : [ "image1", "image2", "image3" ],
+  "price" : 200,
+  "deliveryType" : "shipping",
+  "location" : "Oulu",
+  "id" : 1,
+  "dateOfPosting" : "0025-08-12T00:00:00.000+0000",
+  "title" : "lamborghini aventador for selling",
+  "catergory" : "car"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Post of the requested posts
+        <a href="#ProductInfo">ProductInfo</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /post</code></pre></div>
+    <div class="method-summary">Post a new post (<span class="nickname">postPost</span>)</div>
+    <div class="method-notes">Lets a user post a new post</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#ProductInfo">ProductInfo</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+                </div>  <!-- field-items -->
 
 
 
@@ -563,8 +581,11 @@
 
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">default</h4>
-    successful operation
+    <h4 class="field-label">200</h4>
+    Successfully
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invaid values
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -594,6 +615,7 @@
 <div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The price of the product format: int32</div>
           <div class="param-desc"><span class="param-type">example: 200</span></div>
 <div class="param">dateOfPosting (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span> current date format: date</div>
+          <div class="param-desc"><span class="param-type">example: Sun Aug 12 00:00:00 GMT 25</span></div>
 <div class="param">deliveryType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> transportation </div>
           <div class="param-desc"><span class="param-type">example: shipping</span></div>
 <div class="param">nameAndNumber (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> information for the customers </div>
