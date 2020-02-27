@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer  = require('multer');
 const uuidv4 = require('uuid/v4');
-
+const passport = require("passport");
 
 
 var post = {
@@ -108,7 +108,7 @@ var upload = multer({
     }
 });
 
-router.post('/', upload.array('imgCollection', 4), (req, res, next) => {
+router.post('/', [upload.array('imgCollection', 4), passport.authenticate('jwt', { session: false })], (req, res, next) => {
     const reqFiles = [];
     const url = req.protocol + '://' + req.get('host')
     for (var i = 0; i < req.files.length; i++) {
@@ -143,14 +143,14 @@ router.post('/', upload.array('imgCollection', 4), (req, res, next) => {
 
 // Delete the single data
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     post.posts = post.posts.filter(post => post.id != req.params.id);
     res.sendStatus(200);
 });
 
 // Change the info of the single data
 
-router.put('/:id', upload.array('imgCollection', 4), (req, res) => {
+router.put('/:id', [upload.array('imgCollection', 4), passport.authenticate('jwt', { session: false })], (req, res) => {
     const reqFiles = [];
     const url = req.protocol + '://' + req.get('host')
     for (var i = 0; i < req.files.length; i++) {
